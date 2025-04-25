@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.min.css"
+    rel="stylesheet"
+  />
+  <title>Dashboard | Attache</title>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+  
+  <!-- Navbar -->
+  <nav class="bg-white shadow p-4 flex justify-between items-center">
+    <div class="flex items-center gap-2 text-gray-700 font-semibold">
+      <i class="ri-user-smile-line text-xl"></i>
+      Prof. Jean Martin
+    </div>
+    <button id="logoutBtn" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md transition">
+      <i class="ri-logout-box-r-line mr-1"></i> Déconnexion
+    </button>
+  </nav>
+
+  <!-- Notifications -->
+  <div id="notifications" class="fixed top-4 right-4 space-y-2 z-50"></div>
+
+  <!-- Contenu principal -->
+  <main class="flex-1 flex flex-col items-center p-6">
+    <div class="w-full max-w-4xl bg-white shadow-lg rounded-2xl p-6">
+      <h1 class="text-2xl font-bold text-center mb-6">Gestion des cours et des absences</h1>
+
+      <!-- Liste des cours -->
+      <div class="mb-6">
+        <h2 class="text-xl font-semibold mb-2">Mes cours</h2>
+        <div class="flex items-center gap-4 mb-3">
+          <label for="filterDate" class="text-sm font-medium">Filtrer par date :</label>
+          <input type="date" id="filterDate" class="border p-2 rounded-md shadow-sm" />
+        </div>
+        <ul class="space-y-2">
+          <li class="bg-gray-50 p-4 rounded shadow">
+            <div id="courClass" class="flex justify-between items-center" >
+              <span class="font-medium">Mathématiques - Classe 4A</span>
+              <button id="btnVoirClasse" class="text-blue-600 hover:underline text-sm" >Voir classe</button>
+            </div>
+          </li>
+          <!-- Ajoute d'autres cours ici -->
+        </ul>
+      </div>
+
+      <!-- Liste des étudiants d'une classe -->
+      <div id="classeSection" class="hidden mb-6">
+        <h3 class="text-lg font-semibold mb-2">Étudiants de la classe <span id="classeNom"></span></h3>
+        <ul class="space-y-1">
+          <li class="flex justify-between items-center bg-gray-100 p-3 rounded">
+            <span>Jean Dupont</span>
+            <button class="text-red-600 hover:underline text-sm">Ajouter comme absent</button>
+          </li>
+          <!-- Plus d'étudiants ici -->
+        </ul>
+      </div>
+    </div>
+  </main>
+
+
+  <script type="module" src="../../assets/javascript/professeur/dashboard.js"></script>
+  <script type="module" src="../../router/router.js"></script>
+</body>
+</html>

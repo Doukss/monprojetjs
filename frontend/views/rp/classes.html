@@ -49,7 +49,7 @@
               href="/frontend/views/rp/classes.html"
               class="font-medium gap-3 flex items-center"
             >
-              <i class="ri-timer-flash-line text-lg"></i>
+            <i class="ri-store-3-fill"></i>
               <span>Classes</span>
             </a>
           </li>
@@ -58,7 +58,7 @@
               href="/frontend/views/rp/Professeur.html"
               class="font-medium gap-3 flex items-center"
             >
-              <i class="ri-timer-flash-line text-lg"></i>
+            <i class="ri-user-2-fill"></i>
               <span>Professeur</span>
             </a>
           </li>
@@ -67,7 +67,7 @@
               href="/frontend/views/rp/Cours.html"
               class="font-medium gap-3 flex items-center"
             >
-              <i class="ri-timer-flash-line text-lg"></i>
+            <i class="ri-book-open-line"></i>
               <span>Cours</span>
             </a>
           </li>
@@ -135,6 +135,76 @@
         </div>
       </div>
       <!-- Content-1 -->
+      
+      <div class="mt-6 px-4">
+        <div class="flex flex-col gap-4 bg-white p-3 rounded">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3 mb-3">
+              <div
+                class="w-11 h-11 rounded bg-blue-50 flex justify-center items-center cursor-pointer"
+              >
+                <i
+                  class="ri-calendar-todo-line text-blue-500 font-medium text-xl"
+                ></i>
+              </div>
+              <p class="font-medium text-lg">Rendez-vous</p>
+            </div>
+            <div class="px-3 flex flex-col md:flex-row gap-4 items-center">
+              <input
+                type="text"
+                id="searchInput"
+                placeholder="Rechercher par patient..."
+                class="px-3 py-2 bg-gray-50 rounded-3xl focus:outline-none w-full lg:w-96 shadow"
+              />
+              <select
+                id="statusFilter"
+                class="px-3 py-2 rounded border border-gray-100 focus:outline-none"
+              >
+                <option value="Tous">Tous les statuts</option>
+                <option value="Accepté">Accepté</option>
+                <option value="En attente">En attente</option>
+                <option value="Annulé">Annulé</option>
+              </select>
+            </div>
+          </div>
+          <div class="hidden md:block overflow-x-auto overflow-visible">
+            <table class="min-w-full bg-white rounded-lg overflow-hidden">
+              <thead>
+                <tr class="bg-gray-50 text-sm">
+
+                    <th scope="col" class="px-6 py-4 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Classe</th>
+                    <th scope="col" class="px-6 py-4 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Filière</th>
+                    <th scope="col" class="px-6 py-4 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Niveau</th>
+                    <th scope="col" class="px-6 py-4 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">Statistiques</th>
+                    <th scope="col" class="px-6 py-4 text-right text-xs font-medium text-gray-600 uppercase tracking-wider">Actions</th>
+                </tr>
+              </thead>
+              <tbody
+                id="rendezVousTableBody"
+                class="text-gray-700 whitespace-nowrap"
+              ></tbody>
+            </table>
+            <div class="flex justify-end items-center gap-3 mt-4">
+              <button
+                id="prevPage"
+                class="px-2 py-1 bg-blue-100 text-blue-500 rounded hover:bg-blue-200"
+              >
+                <i class="ri-arrow-left-s-line text-lg"></i>
+              </button>
+              <span id="pageInfo" class="text-gray-700"></span>
+              <button
+                id="nextPage"
+                class="px-2 py-1 bg-blue-100 text-blue-500 rounded hover:bg-blue-200"
+              >
+                <i class="ri-arrow-right-s-line text-lg"></i>
+              </button>
+            </div>
+          </div>
+          <div id="rendezVousCards" class="block md:hidden space-y-4">
+            <!-- Les rendez-vous seront injectés ici dynamiquement -->
+          </div>
+        </div>
+      </div>
       
      
 

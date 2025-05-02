@@ -7,19 +7,19 @@ import {
   renderEtudiantHeader,
 } from "../../../utils/etudiant.utils.js";
 import {
-  renderCalendar,
-  renderCourseCard,
-  renderEtudiantStatsCards,
-} from "../../../helpers/etudiant/dashboard.helpers.js";
+  rendeCoursBannerForEtudiant,
+  renderCoursCardFilterForEtudiant,
+  renderCoursCardsEtudiant,
+} from "../../../helpers/etudiant/cours.helpers.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   initRouter();
   handleNotifications();
   const user = getCurrentUser();
   handleEtudiantSidebar(user);
-  renderEtudiantHeader(user, "Dashboard");
+  renderEtudiantHeader(user, "Cours");
+  rendeCoursBannerForEtudiant();
   const idEtudiant = await getIdEtudiantByUserId(user.id);
-  await renderEtudiantStatsCards(idEtudiant);
-  renderCalendar();
-  await renderCourseCard(idEtudiant);
+  await renderCoursCardsEtudiant(idEtudiant);
+  await renderCoursCardFilterForEtudiant(idEtudiant);
 });

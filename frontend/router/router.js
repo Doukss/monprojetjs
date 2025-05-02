@@ -1,23 +1,54 @@
-import { navigateTo } from "../assets/javascript/auth/login.js";
-import { clearUser, getCurrentUser } from "../store/authStore.js";
+import {
+  clearUser,
+  getCurrentUser,
+  setCurrentUserRole,
+} from "../store/authStore.js";
 
-document.addEventListener("DOMContentLoaded", () => {
-  initRouter();
-});
+const getEnvironmentConfig = () => {
+  const isLocal = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+  return {
+    basePath: isLocal ? "/frontend/" : "",
+    loginPage: isLocal ? "/frontend/index.html" : "/index.html",
+  };
+};
+
+const ROLE_PATHS = {
+  1: "pages/rp/",
+  2: "pages/professeurs/",
+  3: "pages/attache/",
+  4: "pages/etudiant/",
+};
 
 export function initRouter() {
+  const { basePath, loginPage } = getEnvironmentConfig();
   const user = getCurrentUser();
+  let currentPath = window.location.pathname;
 
   if (!user) {
-    return navigateTo("/frontend/index.html");
+    return navigateToAndReplace(loginPage);
   }
-  setupLogout();
+
+  if (!ROLE_PATHS[user.id_role]) {
+    console.error("Rôle utilisateur invalide :", user.id_role);
+    return navigateToAndReplace(loginPage);
+  }
+
+  const userBasePath = `${basePath}${ROLE_PATHS[user.id_role]}`;
+  if (!currentPath.startsWith(userBasePath)) {
+    console.warn(`Accès non autorisé : ${currentPath}`);
+    return navigateToAndReplace(`${userBasePath}dashboard.html`);
+  }
 }
 
-function setupLogout() {
-  document.getElementById("logoutBtn")?.addEventListener("click", (e) => {
-    e.preventDefault();
-    clearUser();
-    navigateTo("/frontend/index.html");
-  });
+export function setupLogout() {
+  clearUser();
+  navigateToAndReplace(getEnvironmentConfig().loginPage);
+}
+
+export function navigateTo(path) {
+  window.location.href = path;
+}
+
+export function navigateToAndReplace(path) {
+  window.location.replace(path);
 }

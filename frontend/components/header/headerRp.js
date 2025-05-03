@@ -20,7 +20,7 @@ export function createResponsiveRPHeader(config) {
   // Création du header
   const header = document.createElement("header");
   header.className =
-    "bg-white dark:bg-gray-800 shadow-sm py-3 rounded px-4 sm:px-6 flex items-center justify-between border-b border-gray-100 dark:border-gray-700";
+    " shadow-md py-3 rounded px-4 sm:px-6 flex items-center justify-between border-b border-gray-100 dark:border-gray-700";
 
   // Partie gauche (Menu burger + Fil d'Ariane)
   const leftSection = document.createElement("div");
@@ -67,8 +67,8 @@ export function createResponsiveRPHeader(config) {
 
   // Message de bienvenue (caché sur mobile)
   const welcomeMsg = document.createElement("h1");
-  welcomeMsg.className = "text-lg font-medium text-gray-700 hidden lg:flex";
-  welcomeMsg.textContent = `Espace administrateur, ${userName}👋`;
+  welcomeMsg.className = "text-lg font-medium text-gray-300 hidden lg:flex";
+  welcomeMsg.textContent = `Espace administrateur, ${userName}`;
 
   breadcrumbContainer.appendChild(breadcrumb);
   breadcrumbContainer.appendChild(welcomeMsg);
@@ -83,7 +83,7 @@ export function createResponsiveRPHeader(config) {
   // Affichage de l'année académique
   const yearContainer = document.createElement("div");
   yearContainer.className =
-    "flex items-center text-sm bg-gray-100 dark:bg-gray-700 rounded-full px-3 py-1";
+    "flex items-center text-sm bg-gray-100 dark:bg-gray-500 rounded px-3 py-1";
   yearContainer.innerHTML = `
     <i class="ri-calendar-line text-gray-600 dark:text-gray-300 mr-2"></i>
     <span class="text-gray-800 dark:text-gray-200 font-medium">${currentYear}-${
@@ -95,9 +95,7 @@ export function createResponsiveRPHeader(config) {
   const themeButton = document.createElement("button");
   themeButton.className =
     "p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none transition-colors text-gray-600 dark:text-gray-300";
-  themeButton.innerHTML = `
-    <i class="ri-sun-line text-xl"></i>
-  `;
+  ;
   themeButton.addEventListener("click", onThemeChange);
 
   rightSection.appendChild(yearContainer);

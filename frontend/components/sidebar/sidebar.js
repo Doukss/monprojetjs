@@ -37,7 +37,7 @@ export function createSidebar(options) {
   const sidebar = document.createElement("div");
   sidebar.id = "sidebar";
   sidebar.className =
-    "flex flex-col justify-between p-3 fixed left-0 shadow-md h-full bg-white text-gray-900 w-64 lg:w-52 md:flex transform transition-transform duration-300 ease-in-out -translate-x-full lg:translate-x-0 z-50";
+    "flex flex-col justify-between p-3 fixed left-0 shadow-md h-full bg-gray-900 text-white w-64 lg:w-52 md:flex transform transition-transform duration-300 ease-in-out -translate-x-full lg:translate-x-0 z-50";
 
   // Construction des parties de la sidebar
   const header = createSidebarHeader(config.logo);
@@ -95,8 +95,8 @@ function createSidebarNavigation(links, onNavigate) {
 
   links.forEach((link) => {
     const li = document.createElement("li");
-    li.className = `py-2 px-4 hover:bg-gray-50 hover:rounded ${
-      link.active ? "bg-purple-50 border border-purple-400" : ""
+    li.className = `py-2 px-4 hover:bg-gray-700 hover:rounded-full ${
+      link.active ? "bg-orange-50 border border-orange-400" : ""
     }`;
 
     const a = document.createElement("a");
@@ -134,7 +134,7 @@ function createSidebarFooter(user, onLogout) {
   userInfo.innerHTML = `
     <img src="${user.avatar}" alt="Avatar" class="w-9 h-9 rounded object-cover">
     <div class="flex flex-col">
-      <span class="text-sm text-purple-500 font-medium">${user.role}</span>
+      <span class="text-sm text-orange-500 font-medium">${user.role}</span>
       <p class="font-medium text-gray-800 text-sm">${user.name}</p>
     </div>
   `;
@@ -142,10 +142,10 @@ function createSidebarFooter(user, onLogout) {
   // Menu dropdown
   const dropdown = document.createElement("div");
   dropdown.className =
-    "dropdown dropdown-top w-10 h-10 flex justify-center items-center hover:bg-gray-50 rounded border border-gray-300";
+    "dropdown dropdown-top w-10 h-10 flex justify-center items-center hover:bg-orange-50 rounded border border-orange-300";
   dropdown.innerHTML = `
     <i class="ri-expand-up-down-line" tabindex="0" role="button"></i>
-    <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-44 p-2 shadow-sm">
+    <ul tabindex="0" class="dropdown-content menu bg-gray-600 rounded-box z-1 w-44 p-2 shadow-sm">
       <li>
         <a href="#/profile" class="text-sm font-semibold border-b border-gray-100">
           <i class="ri-settings-2-line font-medium"></i>
@@ -192,17 +192,17 @@ export function setActiveLink(path) {
 
   // Retirer active de tous les liens
   sidebar.querySelectorAll("li").forEach((li) => {
-    li.classList.remove("bg-purple-50", "border-purple-400");
+    li.classList.remove("bg-orange-50", "border-orange-400");
   });
 
   // Ajouter active au lien correspondant
   const activeLink = sidebar.querySelector(`a[href="${path}"]`);
   if (activeLink) {
     activeLink.parentElement.classList.add(
-      "bg-purple-50",
+      "bg-orange-500",
       "border",
-      "rounded",
-      "border-purple-400"
+      "rounded-full",
+      "border-orange-400"
     );
   }
 }
